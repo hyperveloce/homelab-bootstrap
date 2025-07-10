@@ -1,0 +1,93 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  // General editor settings
+  "editor.autoCompletion": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": true,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.6,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.lineNumbers": "relative",
+  "editor.cursorBlinking": "phase",
+  "editor.smoothScrolling": true,
+  "editor.autoSuggest": true,
+
+  // Git settings
+  "git.enabled": true,
+  "git.autorefresh": true,
+  "git.showStatusBar": true,
+
+  // Auto Save settings
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // Language server configuration (if applicable)
+  "python.autoComplete.showLiterals": true,
+  "typescript.autoComplete.showJSDoc": true,
+
+  // File Explorer
+  "explorer.autoReveal": true,
+  "explorer.sortOrder": "default",
+  "explorer.openEditors.visible": 10,
+
+  // Theme & Appearance
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "vs-seti", // or use "material-icon-theme" for a popular option
+
+  // Performance optimizations
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/build": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  },
+
+  // // Linting and Formatting settings
+  // "python.linting.enabled": true,
+  // "python.linting.pylintEnabled": true,
+  // "eslint.enable": true,
+  // "eslint.validate": ["javascript", "typescript", "html"],
+  // "editor.formatOnPaste": true,
+
+  // Code folding and wrapping
+  "editor.folding": true,
+  "editor.wordWrap": "on",
+
+  // Multi-cursor & Selection
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.cursorBlinking": "smooth",
+
+  // Workspace settings (Optional)
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.closeEmptyGroups": true,
+  "workbench.editor.showTabs": true,
+
+  "telemetry": {
+    "diagnostics": true
+  },
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Tokyo Night"
+  },
+  "icon_theme": "Catppuccin Macchiato"
+}

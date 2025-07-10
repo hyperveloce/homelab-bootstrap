@@ -86,6 +86,11 @@ gnome-settings:
 	gsettings set org.gnome.shell favorite-apps "['thunar.desktop', 'kitty.desktop', 'chromium.desktop', 'brave-browser.desktop']"
 	gsettings set org.gnome.desktop.interface enable-animations false
 
+docker-setup:
+	@echo "Setting up Docker user permissions"
+	$(SUDO) usermod -aG docker $(USERNAME)
+	$(SUDO) systemctl restart docker
+
 reboot:
 	@echo "System setup complete! Rebooting now..."
 	$(SUDO) systemctl reboot
