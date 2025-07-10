@@ -32,13 +32,11 @@ update:
 	@echo "If the kernel or firmware was updated, consider rebooting."
 
 apt:
-	@echo -e "\n\033[1;32mUpdating APT packages...\033[0m"
-	sudo apt update
-	sudo apt upgrade -y
-	sudo apt full-upgrade -y
-	sudo apt autoremove -y
-	sudo apt clean
-	sudo apt autoclean
+	@echo -e "\n\033[1;32mUpdating APT packages with Nala...\033[0m"
+	sudo nala update
+	sudo nala upgrade -y
+	sudo nala autoremove -y
+	sudo nala clean
 
 flatpak:
 	@echo -e "\n\033[1;32mRepairing Flatpak installation...\033[0m"
