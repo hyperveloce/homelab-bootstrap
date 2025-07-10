@@ -1,7 +1,7 @@
 SUDO := sudo
 BUILD_DIR := $(shell pwd)
 HOSTNAME := $(shell hostname)
-CONFIG_DIR := config
+CONFIG_DIR := configs
 CONFIG_FILE := $(CONFIG_DIR)/$(HOSTNAME).config
 
 # Check for config existence and stop if missing
