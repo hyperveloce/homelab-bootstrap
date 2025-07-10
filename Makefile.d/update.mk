@@ -4,11 +4,12 @@ CONFIG ?= $(shell hostname)
 CONFIG_FILE := configs/$(CONFIG).config
 
 ifeq ("$(wildcard $(CONFIG_FILE))","")
-$(warning No config file found at $(CONFIG_FILE). Using defaults.)
+$(error No config file found at $(CONFIG_FILE). Please create it and rerun the Makefile.)
 else
 $(info Using config file: $(CONFIG_FILE))
 include $(CONFIG_FILE)
 endif
+
 
 .PHONY: update-run-config
 update-run-config:
