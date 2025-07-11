@@ -13,8 +13,6 @@ docker-compose-update:
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - ⏳ Waiting for services to initialize..." | tee -a $(LOG_FILE)
 	@sleep 10
 
-
-
 # Nextcloud upgrade & maintenance
 .PHONY: nextcloud-upgrade
 nextcloud-upgrade:

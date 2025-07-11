@@ -14,7 +14,7 @@ include Makefile.d/setup.mk
 
 .PHONY: run-config
 run-config:
-	@echo "🐳 Running docker targets: $(MAKE_DOCKER_TARGETS)"
-	@$(MAKE) $(MAKE_DOCKER_TARGETS)   # runs in current directory
-	@echo "🛡️ Running update targets: $(MAKE_UPDATE_TARGETS)"
-	@$(MAKE) -C bootstrap $(MAKE_UPDATE_TARGETS)  # runs inside bootstrap
+	@echo "🐳 Running docker targets inside bootstrap directory: $(MAKE_DOCKER_TARGETS)"
+	@$(MAKE) -C bootstrap $(MAKE_DOCKER_TARGETS)
+	@echo "🛡️ Running update targets inside bootstrap directory: $(MAKE_UPDATE_TARGETS)"
+	@$(MAKE) -C bootstrap $(MAKE_UPDATE_TARGETS)
