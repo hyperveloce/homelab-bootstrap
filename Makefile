@@ -21,8 +21,10 @@ include Makefile.d/setup.mk   # <-- Add this
 # === Full run (default) ===
 .PHONY: run-config
 run-config:
+	@echo "Current directory before docker targets: $$(pwd)"
 	@echo "🐳 Running docker targets: $(MAKE_DOCKER_TARGETS)"
 	@$(MAKE) -C $(CURDIR) $(MAKE_DOCKER_TARGETS)
+	@echo "Current directory before update targets: $$(pwd)"
 	@echo "🛡️ Running update targets: $(MAKE_UPDATE_TARGETS)"
 	@$(MAKE) -C $(CURDIR) $(MAKE_UPDATE_TARGETS)
 
