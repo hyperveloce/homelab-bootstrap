@@ -8,9 +8,11 @@ docker-compose-update:
 		exit 1; \
 	fi
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - 🚀 Starting Docker container updates..." | tee -a $(LOG_FILE)
-	@bash -c "cd $(DOCKER_COMPOSE_DIR) && docker-compose pull && docker-compose up -d --remove-orphans"
-	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - ⏳ Waiting for Nextcloud to initialize..." | tee -a $(LOG_FILE)
+	@cd $(DOCKER_COMPOSE_DIR) && docker-compose pull
+	@cd $(DOCKER_COMPOSE_DIR) && docker-compose up -d --remove-orphans
+	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - ⏳ Waiting for services to initialize..." | tee -a $(LOG_FILE)
 	@sleep 10
+
 
 # Nextcloud upgrade & maintenance
 .PHONY: nextcloud-upgrade
