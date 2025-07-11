@@ -28,7 +28,7 @@ run-config:
 	@echo "🐳 Running docker targets: $(MAKE_DOCKER_TARGETS)"
 	@$(MAKE) $(MAKE_DOCKER_TARGETS)
 	@echo "🛡️ Running update targets: $(MAKE_UPDATE_TARGETS)"
-	@$(MAKE) $(MAKE_UPDATE_TARGETS)
+	@$(MAKE) -C bootstrap $(MAKE_UPDATE_TARGETS)
 
 .PHONY: setup-run-config
 setup-run-config:
