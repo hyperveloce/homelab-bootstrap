@@ -1,29 +1,4 @@
-docker-update: docker-check docker-compose-update nextcloud-upgrade docker-clean
-
-# Check for Docker + container existence
-.PHONY: docker-check
-docker-check:
-	@sh -c '\
-		if ! command -v docker >/dev/null 2>&1; then \
-			echo "⚠️ Docker not installed. Skipping docker-update."; \
-			exit 0; \
-		fi \
-	'
-
-	@sh -c '\
-		if ! docker info >/dev/null 2>&1; then \
-			echo "⚠️ Docker daemon not running. Skipping docker-update."; \
-			exit 0; \
-		fi \
-	'
-
-	@sh -c '\
-		if ! docker ps -a --format "{{.Names}}" | grep -q "^$(NEXTCLOUD_CONTAINER)$$"; then \
-			echo "⚠️ Nextcloud container '\''$(NEXTCLOUD_CONTAINER)'\'' not found. Skipping Nextcloud upgrade."; \
-			exit 0; \
-		fi \
-	'
-
+docker-update: docker-compose-update nextcloud-upgrade docker-clean
 
 # Pull and recreate Docker Compose services
 .PHONY: docker-compose-update
@@ -32,13 +7,10 @@ docker-compose-update:
 		echo "❌ docker-compose.yml not found in $(DOCKER_COMPOSE_DIR)"; \
 		exit 1; \
 	fi
-	@cd $(DOCKER_COMPOSE_DIR) || { echo "❌ Failed to cd to $(DOCKER_COMPOSE_DIR)"; exit 1; }
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - 🚀 Starting Docker container updates..." | tee -a $(LOG_FILE)
-	@docker-compose pull
-	@docker-compose up -d --remove-orphans
+	@bash -c "cd $(DOCKER_COMPOSE_DIR) && docker-compose pull && docker-compose up -d --remove-orphans"
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - ⏳ Waiting for Nextcloud to initialize..." | tee -a $(LOG_FILE)
 	@sleep 10
-
 
 # Nextcloud upgrade & maintenance
 .PHONY: nextcloud-upgrade
