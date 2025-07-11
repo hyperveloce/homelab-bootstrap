@@ -3,15 +3,15 @@ docker-update: docker-compose-update nextcloud-upgrade docker-clean
 # Pull and recreate Docker Compose services
 .PHONY: docker-compose-update
 docker-compose-update:
-	@if [ ! -f "$(DOCKER_COMPOSE_DIR)/docker-compose.yml" ]; then \
-		echo "❌ docker-compose.yml not found in $(DOCKER_COMPOSE_DIR)"; \
+	@if [ ! -f "../docker-compose.yml" ]; then \
+		echo "❌ docker-compose.yml not found at ../docker-compose.yml"; \
 		exit 1; \
 	fi
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - 🚀 Starting Docker container updates..." | tee -a $(LOG_FILE)
-	@cd $(DOCKER_COMPOSE_DIR) && docker-compose pull && docker-compose up -d --remove-orphans
+	@docker-compose -f ../docker-compose.yml pull
+	@docker-compose -f ../docker-compose.yml up -d --remove-orphans
 	@echo "$$(date +'%Y-%m-%d %H:%M:%S') - ⏳ Waiting for services to initialize..." | tee -a $(LOG_FILE)
 	@sleep 10
-
 
 
 # Nextcloud upgrade & maintenance
