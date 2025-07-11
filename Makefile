@@ -10,6 +10,9 @@ else
   include $(CONFIG_FILE)
 endif
 
+$(info MAKE_DOCKER_TARGETS = [$(MAKE_DOCKER_TARGETS)])
+$(info MAKE_UPDATE_TARGETS = [$(MAKE_UPDATE_TARGETS)])
+
 # === Include other Makefiles ===
 include Makefile.d/docker.mk
 include Makefile.d/update.mk
