@@ -22,9 +22,9 @@ include Makefile.d/setup.mk   # <-- Add this
 .PHONY: run-config
 run-config:
 	@echo "🐳 Running docker targets: $(MAKE_DOCKER_TARGETS)"
-	@$(MAKE) $(MAKE_DOCKER_TARGETS)
+	@$(MAKE) -C $(CURDIR) $(MAKE_DOCKER_TARGETS)
 	@echo "🛡️ Running update targets: $(MAKE_UPDATE_TARGETS)"
-	@$(MAKE) $(MAKE_UPDATE_TARGETS)
+	@$(MAKE) -C $(CURDIR) $(MAKE_UPDATE_TARGETS)
 
 # === Setup-only ===
 .PHONY: setup-run-config
