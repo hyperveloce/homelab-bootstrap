@@ -86,6 +86,20 @@ installStarship(){
     fi
 }
 
+create_fastfetch_config() {
+    USER_HOME=$(getent passwd "${SUDO_USER:-$USER}" | cut -d: -f6)
+    CONFIG_DIR="$USER_HOME/.config/fastfetch"
+    CONFIG_FILE="$CONFIG_DIR/config.jsonc"
+
+    mkdir -p "$CONFIG_DIR"
+    [ -e "$CONFIG_FILE" ] && rm -f "$CONFIG_FILE"
+
+    if ! ln -svf "$GITPATH/fastfetch/config.jsonc" "$CONFIG_FILE"; then
+        print_colored "$RED" "Failed to create symbolic link for fastfetch config"
+        exit 1
+    fi
+}
+
 linkConfig() {
     ## Get the correct user home directory.
     USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
@@ -103,7 +117,6 @@ linkConfig() {
     ## Make symbolic link.
     ln -svf ${GITPATH}/.bashrc ${USER_HOME}/.bashrc
     ln -svf ${GITPATH}/${HOSTNAME}-starship.toml ${USER_HOME}/.config/starship.toml
-    ln -svf ${GITPATH}/neofetchConfig.conf ${USER_HOME}/.config/neofetch.conf
     mkdir ${USER_HOME}/.config/kitty
     ln -svf ${GITPATH}/kitty/current-theme.conf ${USER_HOME}/.config/kitty/current-theme.conf
     ln -svf ${GITPATH}/kitty/kitty.conf ${USER_HOME}/.config/kitty/kitty.conf
