@@ -1,11 +1,13 @@
 #!/bin/bash
-fastfetch
 
 iatest=$(expr index "$-" i)
 
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
 #######################################################
+if [ -f /usr/bin/fastfetch ]; then
+	fastfetch
+fi
 
 # Source global definitions
  if [ -f /etc/bashrc ]; then
@@ -29,6 +31,7 @@ if [[ $iatest -gt 0 ]]; then bind "set bell-style visible"; fi
 # Expand the history size
 export HISTFILESIZE=10000
 export HISTSIZE=500
+export HISTTIMEFORMAT="%F %T" # add timestamp to history
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
@@ -53,22 +56,9 @@ if [[ $iatest -gt 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 # Set the default editor
 export EDITOR=nvim
 export VISUAL=nvim
-alias pico='edit'
-alias spico='sedit'
-alias nano='edit'
-alias snano='sedit'
+alias spico='sudo pico'
+alias snano='sudo nano'
 alias vim='nvim'
-
-# Replace batcat with cat on Fedora as batcat is not available as a RPM in any form
-if command -v lsb_release > /dev/null; then
-    DISTRIBUTION=$(lsb_release -si)
-
-    if [ "$DISTRIBUTION" = "Fedora" ]; then
-        alias cat='bat'
-    else
-        alias cat='batcat'
-    fi
-fi
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
@@ -713,6 +703,13 @@ export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bi
 # Install Starship - curl -sS https://starship.rs/install.sh | sh
 
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+
+exec startx
+
+fi
 
 #Autojump
 
