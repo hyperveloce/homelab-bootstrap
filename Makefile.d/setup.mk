@@ -46,7 +46,7 @@ setup-folders:
 	# cp -r dotconfig/* /home/$(USERNAME)/.config/
 	cp bg/bg.jpg /home/$(USERNAME)/Pictures/bg/
 	cp -r themes/* /home/$(USERNAME)/.themes/
-	mv user-dirs.dirs /home/$(USERNAME)/.config/
+	# mv user-dirs.dirs /home/$(USERNAME)/.config/
 	chown -R $(USERNAME):$(USERNAME) /home/$(USERNAME)
 
 install-packages:
