@@ -43,7 +43,7 @@ firewall:
 setup-folders:
 	@echo "Creating config folders and copying configs for user $(USERNAME)..."
 	mkdir -p /home/$(USERNAME)/.config /home/$(USERNAME)/.fonts /home/$(USERNAME)/.themes /home/$(USERNAME)/Pictures/bg
-	cp -r dotconfig/* /home/$(USERNAME)/.config/
+	# cp -r dotconfig/* /home/$(USERNAME)/.config/
 	cp bg/bg.jpg /home/$(USERNAME)/Pictures/bg/
 	cp -r themes/* /home/$(USERNAME)/.themes/
 	mv user-dirs.dirs /home/$(USERNAME)/.config/
