@@ -16,3 +16,7 @@ include Makefile.d/setup.mk
 run-config:
 	@echo "🐳 Running docker targets inside bootstrap directory: $(MAKE_DOCKER_TARGETS)"
 	$(MAKE) -C bootstrap $(MAKE_DOCKER_TARGETS) $(MAKE_UPDATE_TARGETS)
+
+run-setup:
+	@echo "🐳 Running docker targets inside bootstrap directory: $(MAKE_DOCKER_TARGETS)"
+	$(MAKE) -C bootstrap $(MAKE_SETUP_TARGETS)

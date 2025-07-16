@@ -66,9 +66,11 @@ services:
 	$(SUDO) apt autoremove -y
 
 flatpak:
-	@echo "Setting up Flatpak and installing apps: $(FLATPAK_APPS)"
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak install -y --system $(FLATPAK_APPS)
+	@echo "📦 Setting up Flatpak and installing apps:"
+	@for app in $(FLATPAK_APPS); do \
+		echo "  → Installing $$app"; \
+		flatpak install -y --system $$app; \
+	done
 
 gnome-extensions:
 	@echo "Installing and enabling GNOME extensions: $(GNOME_EXTENSIONS)"
