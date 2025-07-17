@@ -187,15 +187,14 @@ sudo apt install syncthing -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install Flatpak apps system-wide from Flathub
-if [[ -n "$FLATPAKS" ]]; then
-    echo -e "\e[1;33mInstalling Flatpak packages...\e[0m"
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-    for app in $FLATPAKS; do
-        flatpak install -y --system flathub "$app"
-    done
+if [[ ${#FLATPAKS[@]} -gt 0 ]]; then
+  echo -e "\e[1;33mInstalling Flatpak packages...\e[0m"
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  for app in "${FLATPAKS[@]}"; do
+    flatpak install -y --system flathub "$app"
+  done
 else
-    echo -e "\e[1;34mNo Flatpak apps listed in config for this host.\e[0m"
+  echo -e "\e[1;34mNo Flatpak apps listed in config for this host.\e[0m"
 fi
 
 # Install Zed
