@@ -69,11 +69,22 @@ chown -R $username:$username /home/$username
 # ------------------------------------------------- #
 # ----- INSTALL Debian APT AVAILABLE SOFTWARE ----- #
 # ------------------------------------------------- #
-echo -e "\e[1;36mPACKAGES from config:\e[0m $PACKAGES"
+# COLORS
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Read packages from $PACKAGES variable (split into array)
 read -ra PKG_ARRAY <<< "$PACKAGES"
-echo -e "\e[1;36mInstalling packages:\e[0m ${PKG_ARRAY[@]}"
-sudo apt update
-sudo apt install -y "${PKG_ARRAY[@]}"
+
+# Loop through each package
+for pkg in "${PKG_ARRAY[@]}"; do
+    echo -e "\e[1;34mInstalling: $pkg\e[0m"
+    if sudo apt install -y "$pkg"; then
+        echo -e "\e[1;32m✔ Successfully installed: $pkg\e[0m"
+    else
+        echo -e "${RED}✘ Failed to install: $pkg${NC}"
+    fi
+done
 
 # sudo apt install -y \
 
