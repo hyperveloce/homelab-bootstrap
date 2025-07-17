@@ -61,7 +61,6 @@ mkdir -p /home/$username/.fonts
 mkdir -p /home/$username/.themes
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/bg
-cp -R dotconfig/* /home/$username/.config/
 cp bg/bg.jpg /home/$username/Pictures/bg/
 cp themes /home/$username/.themes
 mv user-dirs.dirs /home/$username/.config
@@ -71,7 +70,8 @@ chown -R $username:$username /home/$username
 # ----- INSTALL Debian APT AVAILABLE SOFTWARE ----- #
 # ------------------------------------------------- #
 
-sudo apt install -y $PACKAGES
+read -ra PKG_ARRAY <<< "$PACKAGES"
+sudo apt install -y "${PKG_ARRAY[@]}"
 
 # sudo apt install -y \
 
@@ -136,31 +136,31 @@ sudo apt install -y $PACKAGES
 apt purge libreoffice* -y
 apt purge firefox-esr gnome-contacts rhythmbox cheese iagno lightsoff four-in-a-row gnome-robots pegsolitaire gnome-2048 hitori gnome-klotski gnome-mines gnome-mahjongg gnome-sudoku quadrapassel swell-foop gnome-tetravex gnome-taquin aisleriot gnome-chess five-or-more gnome-nibbles tali gnome-weather gnome-online-accounts gnome-music gnome-sound-recorder gnome-maps gnome-calendar gnome-music gnome-text-editor transmission-common transmission-gtk firefox-esr evolution -y
 
-# Download Nordic Theme
-cd /usr/share/themes/
-git clone https://github.com/EliverLara/Nordic.git
+# # Download Nordic Theme
+# cd /usr/share/themes/
+# git clone https://github.com/EliverLara/Nordic.git
 
-# Installing fonts
-cd $builddir
-nala install fonts-font-awesome -y
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-unzip FiraCode.zip -d /home/$username/.fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d /home/$username/.fonts
-mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
-chown $username:$username /home/$username/.fonts/*
+# # Installing fonts
+# cd $builddir
+# nala install fonts-font-awesome -y
+# wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+# unzip FiraCode.zip -d /home/$username/.fonts
+# wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+# unzip Meslo.zip -d /home/$username/.fonts
+# mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
+# chown $username:$username /home/$username/.fonts/*
 
-# Reloading Font
-fc-cache -vf
-# Removing zip Files
-rm ./FiraCode.zip ./Meslo.zip
+# # Reloading Font
+# fc-cache -vf
+# # Removing zip Files
+# rm ./FiraCode.zip ./Meslo.zip
 
-# Install Nordzy cursor
-git clone https://github.com/alvatip/Nordzy-cursors
-cd Nordzy-cursors
-./install.sh
-cd $builddir
-rm -rf Nordzy-cursors
+# # Install Nordzy cursor
+# git clone https://github.com/alvatip/Nordzy-cursors
+# cd Nordzy-cursors
+# ./install.sh
+# cd $builddir
+# rm -rf Nordzy-cursors
 
 # Enable wireplumber audio service
 
@@ -180,10 +180,6 @@ echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sourc
 # Update and install
 sudo apt update
 sudo apt install syncthing -y
-
-
-sudo apt install -y $PACKAGES
-
 
 # ----- FLATPAK ----- #
 
