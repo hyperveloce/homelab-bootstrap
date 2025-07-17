@@ -69,8 +69,10 @@ chown -R $username:$username /home/$username
 # ------------------------------------------------- #
 # ----- INSTALL Debian APT AVAILABLE SOFTWARE ----- #
 # ------------------------------------------------- #
-
+echo -e "\e[1;36mPACKAGES from config:\e[0m $PACKAGES"
 read -ra PKG_ARRAY <<< "$PACKAGES"
+echo -e "\e[1;36mInstalling packages:\e[0m ${PKG_ARRAY[@]}"
+sudo apt update
 sudo apt install -y "${PKG_ARRAY[@]}"
 
 # sudo apt install -y \
@@ -133,8 +135,8 @@ sudo apt install -y "${PKG_ARRAY[@]}"
 
 # dpkg --list | grep <package>
 
-apt purge libreoffice* -y
-apt purge firefox-esr gnome-contacts rhythmbox cheese iagno lightsoff four-in-a-row gnome-robots pegsolitaire gnome-2048 hitori gnome-klotski gnome-mines gnome-mahjongg gnome-sudoku quadrapassel swell-foop gnome-tetravex gnome-taquin aisleriot gnome-chess five-or-more gnome-nibbles tali gnome-weather gnome-online-accounts gnome-music gnome-sound-recorder gnome-maps gnome-calendar gnome-music gnome-text-editor transmission-common transmission-gtk firefox-esr evolution -y
+# apt purge libreoffice* -y
+# apt purge firefox-esr gnome-contacts rhythmbox cheese iagno lightsoff four-in-a-row gnome-robots pegsolitaire gnome-2048 hitori gnome-klotski gnome-mines gnome-mahjongg gnome-sudoku quadrapassel swell-foop gnome-tetravex gnome-taquin aisleriot gnome-chess five-or-more gnome-nibbles tali gnome-weather gnome-online-accounts gnome-music gnome-sound-recorder gnome-maps gnome-calendar gnome-music gnome-text-editor transmission-common transmission-gtk firefox-esr evolution -y
 
 # # Download Nordic Theme
 # cd /usr/share/themes/
