@@ -181,6 +181,10 @@ echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sourc
 sudo apt update
 sudo apt install syncthing -y
 
+
+sudo apt install -y $PACKAGES
+
+
 # ----- FLATPAK ----- #
 
 # Add Flathub repo if not already added
