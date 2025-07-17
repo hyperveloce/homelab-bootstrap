@@ -1,4 +1,4 @@
 https://github.com/hyperveloce/homelab-bootstrap/blob/main/install.sh
 
 To install:
-https://github.com/hyperveloce/homelab-bootstrap/blob/main/install.sh
+curl -fsSL https://raw.githubusercontent.com/hyperveloce/homelab-bootstrap/main/install.sh | bash
