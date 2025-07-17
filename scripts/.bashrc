@@ -1,12 +1,11 @@
 #!/bin/bash
 
-iatest=$(expr index "$-" i)
-
-#######################################################
-# SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
-#######################################################
-if [ -f /usr/bin/fastfetch ]; then
-	fastfetch
+# Check if shell is interactive
+if [[ $- == *i* ]]; then
+    # Only show fastfetch if shell is interactive
+    if [ -x /usr/bin/fastfetch ]; then
+        fastfetch
+    fi
 fi
 
 # Source global definitions
