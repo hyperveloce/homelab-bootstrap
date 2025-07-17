@@ -9,6 +9,15 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
+# Load package list from config/$(hostname).config
+host_config="config/$(hostname).config"
+if [[ -f "$host_config" ]]; then
+    source "$host_config"
+    echo -e "\e[1;33mInstalling packages from: $host_config\e[0m"
+else
+    echo -e "\e[1;31mHost-specific config not found: $host_config\e[0m"
+    exit 1
+fi
 
 # Install Terminus Fonts
 sudo apt install fonts-terminus
@@ -62,61 +71,62 @@ chown -R $username:$username /home/$username
 # ----- INSTALL Debian APT AVAILABLE SOFTWARE ----- #
 # ------------------------------------------------- #
 
+sudo apt install -y $PACKAGES
 
-sudo apt install -y \
+# sudo apt install -y \
 
-# 🛠️ System Tools
-stacer \
-timeshift \
-barrier \
-btop \
-picom \
-dupeguru \
-qjackctl \
-xarchiver \
-curl \
-x11-xserver-utils \
-unzip \
-wget \
-preload \
-build-essential \
-zoxide \
-flatpak \
-gnome-software-plugin-flatpak \
-synaptic \
-gnome-tweaks \
-gnome-shell-extension-manager \
-gnome-power-manager \
+# # 🛠️ System Tools
+# stacer \
+# timeshift \
+# barrier \
+# btop \
+# picom \
+# dupeguru \
+# qjackctl \
+# xarchiver \
+# curl \
+# x11-xserver-utils \
+# unzip \
+# wget \
+# preload \
+# build-essential \
+# zoxide \
+# flatpak \
+# gnome-software-plugin-flatpak \
+# synaptic \
+# gnome-tweaks \
+# gnome-shell-extension-manager \
+# gnome-power-manager \
 
-# 🌐 Networking & Remote Access
-network-manager \
-network-manager-gnome \
-network-manager-openvpn \
-network-manager-openvpn-gnome \
+# # 🌐 Networking & Remote Access
+# network-manager \
+# network-manager-gnome \
+# network-manager-openvpn \
+# network-manager-openvpn-gnome \
 
-# 🌍 Web Browsers
-brave-browser \
-librewolf \
-chromium \
+# # 🌍 Web Browsers
+# brave-browser \
+# librewolf \
+# chromium \
 
-# 🖼️ Image & Media Utilities
-feh \
-geeqie \
-shotwell \
-org.darktable.darktable \
-papirus-icon-theme \
-fonts-noto-color-emoji \
+# # 🖼️ Image & Media Utilities
+# feh \
+# geeqie \
+# shotwell \
+# org.darktable.darktable \
+# papirus-icon-theme \
+# fonts-noto-color-emoji \
 
-# 🧰 Developer & Power User Tools
-kitty \
-neovim \
-cmatrix \
-diodon \
-vim \
+# # 🧰 Developer & Power User Tools
+# kitty \
+# neovim \
+# cmatrix \
+# diodon \
+# vim \
 
-# 🎭 Miscellaneous & Fun
-hollywood \
-fastfetch
+# # 🎭 Miscellaneous & Fun
+# hollywood \
+# fastfetch
 
 # # Packages needed for window manager installation
 # sudo apt install -y picom nitrogen rofi dunst libnotify-bin wmctrl xdotool
@@ -125,7 +135,6 @@ fastfetch
 
 apt purge libreoffice* -y
 apt purge firefox-esr gnome-contacts rhythmbox cheese iagno lightsoff four-in-a-row gnome-robots pegsolitaire gnome-2048 hitori gnome-klotski gnome-mines gnome-mahjongg gnome-sudoku quadrapassel swell-foop gnome-tetravex gnome-taquin aisleriot gnome-chess five-or-more gnome-nibbles tali gnome-weather gnome-online-accounts gnome-music gnome-sound-recorder gnome-maps gnome-calendar gnome-music gnome-text-editor transmission-common transmission-gtk firefox-esr evolution -y
-
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -178,18 +187,16 @@ sudo apt install syncthing -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install Flatpak apps system-wide from Flathub
-flatpak install -y --system flathub com.github.IsmaelMartinez.teams_for_linux
-flatpak install -y --system flathub io.github.realmazharhussain.GdmSettings
-flatpak install -y --system flathub flathub com.rtosta.zapzap
-flatpak install -y --system flathub com.mastermindzh.tidal-hifi
-flatpak install -y --system flathub hu.irl.cameractrls
-flatpak install -y --system flathub us.zoom.Zoom
-flatpak install -y --system flathub org.kde.digikam
-flatpak install -y --system flathub com.github.PintaProject.Pinta
-flatpak install -y --system flathub md.obsidian.Obsidian
-flatpak install -y --system flathub io.gitlab.librewolf-community
-flatpak install -y --system flathub bleachbit
-flatpak install -y --system flathub com.rustdesk.RustDesk
+if [[ -n "$FLATPAKS" ]]; then
+    echo -e "\e[1;33mInstalling Flatpak packages...\e[0m"
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    for app in $FLATPAKS; do
+        flatpak install -y --system flathub "$app"
+    done
+else
+    echo -e "\e[1;34mNo Flatpak apps listed in config for this host.\e[0m"
+fi
 
 # Install Zed
 curl -f https://zed.dev/install.sh | sh
