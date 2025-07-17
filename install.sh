@@ -10,7 +10,7 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 # Load package list from config/$(hostname).config
-host_config="config/$(hostname).config"
+host_config="configs/$(hostname).config"
 if [[ -f "$host_config" ]]; then
     source "$host_config"
     echo -e "\e[1;33mInstalling packages from: $host_config\e[0m"
