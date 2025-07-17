@@ -245,6 +245,6 @@ gsettings get org.gnome.shell favorite-apps
 gsettings set org.gnome.shell favorite-apps "['thunar.desktop', 'kitty.desktop', 'chromium.desktop', 'brave-browser.desktop', 'io.atom.Atom.desktop', 'com.mastermindzh.tidal-hifi.desktop', 'io.github.mimbrero.WhatsAppDesktop.desktop']"
 gsettings set org.gnome.desktop.interface enable-animations false
 
-printf "\e[1;32mYour system is ready and will go for reboot! Thanks you.\e[0m\n"
+# printf "\e[1;32mYour system is ready and will go for reboot! Thanks you.\e[0m\n"
 
-systemctl reboot
+# systemctl reboot
