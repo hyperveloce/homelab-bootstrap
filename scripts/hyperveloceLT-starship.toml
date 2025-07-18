@@ -1,69 +1,120 @@
 format = """
-[░▒▓](#f9d5e5)\
-$hostname\
-[  ](bg:#f9d5e5 fg:#3a3a3a)\
-[](bg:#f7c1d9 fg:#f9d5e5)\
+[](#F4C2C2)\
+$python\
+$username\
+[](bg:#E6A9A9 fg:#F4C2C2)\
 $directory\
-[](fg:#f7c1d9 bg:#e7a7b8)\
+[](fg:#E6A9A9 bg:#F7D1D1)\
 $git_branch\
 $git_status\
-[](fg:#e7a7b8 bg:#dba9b6)\
-$nodejs\
-$rust\
+[](fg:#F7D1D1 bg:#F9B7B7)\
+$c\
+$elixir\
+$elm\
 $golang\
-$php\
-[](fg:#dba9b6 bg:#c78ba3)\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+[](fg:#F9B7B7 bg:#F4C2C2)\
+$docker_context\
+[](fg:#F4C2C2 bg:#F4C2C2)\
 $time\
-[ ](fg:#c78ba3)\
-\n$character"""
+[ ](fg:#F4C2C2)\
+"""
+
+command_timeout = 5000
+
+[username]
+show_always = true
+style_user = "bg:#F4C2C2"
+style_root = "bg:#F4C2C2"
+format = '[$user ]($style)'
 
 [directory]
-style = "fg:#fefefe bg:#f7c1d9"
+style = "bg:#E6A9A9"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[hostname]
-style = "bg:#f9d5e5 fg:#884466"
-format = "[ @$hostname]($style)"
-
 [directory.substitutions]
-"Documents" = " "
+"Documents" = "󰈙 "
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
 
+[c]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:#F9B7B7"
+format = '[ $symbol $context ]($style)$path'
+
+[elixir]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
 [git_branch]
-symbol = ""
-style = "bg:#e7a7b8"
-format = '[[ $symbol $branch ](fg:#f9d5e5 bg:#e7a7b8)]($style)'
+symbol = ""
+style = "bg:#F7D1D1"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#e7a7b8"
-format = '[[($all_status$ahead_behind )](fg:#f9d5e5 bg:#e7a7b8)]($style)'
+style = "bg:#F7D1D1"
+format = '[$all_status$ahead_behind ]($style)'
+
+[golang]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#c78ba3"
-format = '[[ $symbol ($version) ](fg:#f9d5e5 bg:#c78ba3)]($style)'
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = " "
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+style = "bg:#F4C2C2"
+format = '[(\($virtualenv\) )]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#c78ba3"
-format = '[[ $symbol ($version) ](fg:#f9d5e5 bg:#c78ba3)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:#c78ba3"
-format = '[[ $symbol ($version) ](fg:#f9d5e5 bg:#c78ba3)]($style)'
-
-[php]
-symbol = ""
-style = "bg:#c78ba3"
-format = '[[ $symbol ($version) ](fg:#f9d5e5 bg:#c78ba3)]($style)'
+style = "bg:#F7D1D1"
+format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-time_format = "%R"                                      # Hour:Minute Format
-style = "bg:#c78ba3"
-format = '[[  $time ](fg:#ffffff bg:#c78ba3)]($style)'
+time_format = "%R"
+style = "bg:#F4C2C2"
+format = '[ $time ]($style)'

@@ -58,8 +58,8 @@ apt purge firefox-esr gnome-contacts rhythmbox cheese iagno lightsoff four-in-a-
 # Download Nordic Theme
 cd /usr/share/themes/
 git clone https://github.com/EliverLara/Nordic.git
-gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
-gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+gsettings set org.gnome.desktop.interface gtk-theme 'Nordic-dark'
+gsettings set org.gnome.shell.extensions.user-theme name 'Nordic-dark'
 
 # Installing fonts
 cd $builddir
