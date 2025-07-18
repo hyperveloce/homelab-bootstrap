@@ -8,6 +8,24 @@ GREEN='\e[32m'
 command_exists () {
     command -v $1 >/dev/null 2>&1;
 }
+## include below into script
+# # System setup
+# sudo timedatectl set-timezone Australia/Melbourne
+
+# # user setup
+# sudo adduser kanasu
+# sudo usermod -aG sudo kanasu
+
+# # firewall setup
+# sudo apt install ufw
+# sudo ufw default deny incoming
+# sudo ufw default allow outgoing
+# sudo ufw allow 22/tcp  # or the port you set for SSH
+# sudo ufw enable
+
+# # brute force protection
+# sudo apt install fail2ban
+# sudo systemctl enable fail2ban
 
 checkEnv() {
     ## Check for requirements.
