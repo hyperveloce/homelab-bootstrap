@@ -29,12 +29,12 @@ command_timeout = 5000
 
 [username]
 show_always = true
-style_user = "bg:#F4C2C2 fg:#5A1A1A"
-style_root = "bg:#F4C2C2 fg:#5A1A1A"
+style_user = "bg:#F4C2C2 fg:#D87E8B"
+style_root = "bg:#F4C2C2 fg:#D87E8B"
 format = '[$user ]($style)'
 
 [directory]
-style = "bg:#E6A9A9 fg:#5A1A1A"
+style = "bg:#E6A9A9 fg:#D87E8B"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
