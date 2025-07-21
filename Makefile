@@ -7,13 +7,16 @@ else
   include $(CONFIG_FILE)
 endif
 
+# Export variables for sub-make
+export MAKE_DOCKER_TARGETS
+export MAKE_UPDATE_TARGETS
+
 # === Include other Makefiles ===
 include Makefile.d/docker.mk
 include Makefile.d/update.mk
 
 .PHONY: run-config
 run-config:
-run-config:
-	@echo "🐳 Docker targets: $(MAKE_DOCKER_TARGETS)"
-	@echo "🔄 Update targets: $(MAKE_UPDATE_TARGETS)"
+	@echo "🐳 make Docker targets: $(MAKE_DOCKER_TARGETS)"
+	@echo "📦 make Update targets: $(MAKE_UPDATE_TARGETS)"
 	$(MAKE) -C bootstrap $(MAKE_DOCKER_TARGETS) $(MAKE_UPDATE_TARGETS)
