@@ -99,7 +99,12 @@ bash scripts/usenala
 # ----- FLATPAK ----- #
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Install Flatpak apps system-wide from Flathub
+CONFIG_FILE="configs/$(hostname).config"
+
+# Parse FLATPAKS variable from Makefile-style config
+FLATPAKS=($(sed -n '/^FLATPAKS[[:space:]]*=/,/^[^ ]/p' "$CONFIG_FILE" | \
+           grep -v '^FLATPAKS' | tr -d '\\'))
+
 if [[ ${#FLATPAKS[@]} -gt 0 ]]; then
   echo -e "\e[1;33mInstalling Flatpak packages...\e[0m"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -109,6 +114,7 @@ if [[ ${#FLATPAKS[@]} -gt 0 ]]; then
 else
   echo -e "\e[1;34mNo Flatpak apps listed in config for this host.\e[0m"
 fi
+
 
 # Install Zed
 curl -f https://zed.dev/install.sh | sh

@@ -10,13 +10,8 @@ endif
 # === Include other Makefiles ===
 include Makefile.d/docker.mk
 include Makefile.d/update.mk
-include Makefile.d/setup.mk
 
 .PHONY: run-config
 run-config:
 	@echo "🐳 Running docker targets inside bootstrap directory: $(MAKE_DOCKER_TARGETS)"
 	$(MAKE) -C bootstrap $(MAKE_DOCKER_TARGETS) $(MAKE_UPDATE_TARGETS)
-
-run-setup:
-	@echo "🐳 Running docker targets inside bootstrap directory: $(MAKE_DOCKER_TARGETS)"
-	$(MAKE) -C bootstrap $(MAKE_SETUP_TARGETS)
