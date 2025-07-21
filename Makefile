@@ -19,4 +19,4 @@ include Makefile.d/update.mk
 run-config:
 	@echo "🐳 make Docker targets: $(MAKE_DOCKER_TARGETS)"
 	@echo "📦 make Update targets: $(MAKE_UPDATE_TARGETS)"
-	$(MAKE) -C bootstrap $(MAKE_DOCKER_TARGETS) $(MAKE_UPDATE_TARGETS)
+	$(MAKE) $(MAKE_DOCKER_TARGETS) $(MAKE_UPDATE_TARGETS)
