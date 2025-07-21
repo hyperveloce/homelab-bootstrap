@@ -15,6 +15,8 @@ export MAKE_UPDATE_TARGETS
 include Makefile.d/docker.mk
 include Makefile.d/update.mk
 
+.DEFAULT_GOAL := run-config
+
 .PHONY: run-config
 run-config:
 	@echo "🐳 make Docker targets: $(MAKE_DOCKER_TARGETS)"
